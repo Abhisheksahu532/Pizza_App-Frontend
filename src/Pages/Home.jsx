@@ -1,8 +1,11 @@
 import React from 'react'
 import ArrowRight from '../Components/Icons/ArrowRight'
+import IconPatchCheck from '../Components/Icons/IconPatchCheck'
 import PizzaImage from "../assets/Images/pizza1.png"
 import CookingImage from "../assets/Images/cooking.webp"
-import IconPatchCheck from '../Components/Icons/IconPatchCheck'
+import OrderFood from '../assets/Images/orderFood.png';
+import Pickup from '../assets/Images/pickup.png';
+import Enjoy from '../assets/Images/enjoy.png';
 
 const Home = () => {
   return (
@@ -45,7 +48,7 @@ const Home = () => {
                     src={PizzaImage}
                     alt="Pizza Image"
                     height = {600}
-                    width={600}
+                    width={800}
 
                 />
             </div>
@@ -53,7 +56,7 @@ const Home = () => {
         </section>
 
         {/** Services Section */}
-        <section className="py-6 mt-6 bg-gradient-to-r from-amber-50 to-orange-400">
+        <section className="py-6 mt-6 bg-gradient-to-r from-amber-50 to-orange-300">
             
             <div className='conatiner flex flex-col md:flex-row'>
 
@@ -61,14 +64,14 @@ const Home = () => {
 
                     <img
                         src ={CookingImage}
-                        width ={500}
+                        width ={600}
                         alt="Cooking"
                         className='rounded-lg'
                     />
 
                 </div>
 
-                <div className='flex flex-col flex-wrap text-center lg:py-6 lg:w-1/2 lg:pl-12 lg:text-left'>
+                <div className='flex flex-col flex-wrap text-center lg:py-6 lg:w-1/2 lg:pl-10 lg:text-left'>
 
                     <div className='flex flex-col items-center lg:items-start'>
                         <div>
@@ -100,6 +103,69 @@ const Home = () => {
                             <IconPatchCheck className="text-[#F38339] w-10 h-10 mr-4" />
                             <span className='font-bold title-font'>Food Hygiene Guaranted</span>
                         </div>
+
+                    </div>
+
+                    <div className='px-5 py-4 mx-auto'>
+
+                        <div className='flex justify-center py-4'>
+
+                            <div className='inline-flex w-16 h-1 bg-yellow-500 rounded-full'></div>
+                        
+                        </div>
+                        
+                    <div className='flex flex-wrap space-y-6 md:space-y-0'>
+
+                        <div className='flex flex-col items-center text-center p-4 md:w-1/3'>
+                            <div>
+                                <img
+                                    src ={OrderFood}
+                                />
+                            </div>
+                            <div className='flex-grow'>
+                                <h2 className='mb-3 text-lg font-medium text-gray-900 title-font'>
+                                    Order Food 
+                                </h2>
+                                <p className='text-base leading-relaxed'>
+                                    As easy as 1,2,3. Just select your Pizza and place your order
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col items-center text-center p-4 md:w-1/3'>
+                            <div>
+                                <img
+                                    src ={Pickup}
+                                />
+                            </div>
+                            <div className='flex-grow'>
+                                <h2 className='mb-3 text-lg font-medium text-gray-900 title-font'>
+                                    Pickup Food 
+                                </h2>
+                                <p className='text-base leading-relaxed'>
+                                    Pickup your food from the nearest store or get it delivered at your doorstep
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col items-center text-center p-4 md:w-1/3'>
+                            <div>
+                                <img
+                                    src ={Enjoy}
+                                />
+                            </div>
+                            <div className='flex-grow'>
+                                <h2 className='mb-3 text-lg font-medium text-gray-900 title-font'>
+                                    Enjoy Food 
+                                </h2>
+                                <p className='text-base leading-relaxed'>
+                                    As soon as you get your order, enjoy the delicious pizza with your loved ones. 
+                               </p>
+                            </div>
+                        </div>                      
+
+                    </div>
+
 
                     </div>
 

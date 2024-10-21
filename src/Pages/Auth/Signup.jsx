@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Signup() {
     return (
         <div>
@@ -166,7 +168,7 @@ function Signup() {
                         </div>
 
                         <div className="relative mb-4 ">
-                            <label htmlFor="firstName" className="text-sm leading-7 text-gray-600" >Email<span className="text-red-500">*</span></label>
+                            <label htmlFor="email" className="text-sm leading-7 text-gray-600" >Email<span className="text-red-500">*</span></label>
 
                             <input 
                                 type="email" 
@@ -180,7 +182,7 @@ function Signup() {
                         </div>
 
                         <div className="relative mb-4 ">
-                            <label htmlFor="firstName" className="text-sm leading-7 text-gray-600" >Mobile Number<span className="text-red-500">*</span></label>
+                            <label htmlFor="mobileNumber" className="text-sm leading-7 text-gray-600" >Mobile Number<span className="text-red-500">*</span></label>
 
                             <input 
                                 type="tel" 
@@ -195,7 +197,7 @@ function Signup() {
                         </div>
 
                         <div className="relative mb-4 ">
-                            <label htmlFor="firstName" className="text-sm leading-7 text-gray-600" >Password<span className="text-red-500">*</span></label>
+                            <label htmlFor="password" className="text-sm leading-7 text-gray-600" >Password<span className="text-red-500">*</span></label>
 
                             <input 
                                 type="password" 
@@ -214,7 +216,8 @@ function Signup() {
                         </button>
 
                         <p className="mt-4 text-sm text-gray-600">
-                            Already have an account? <a href="/auth/login" className="text-yellow-500 hover:text-yellow-600">Login</a>
+                            Already have an account? 
+                            <Link to="/auth/login" className="text-yellow-500 hover:text-yellow-600">Login</Link>
                         </p>
                         
                     </form>

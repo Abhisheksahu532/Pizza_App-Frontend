@@ -1,9 +1,16 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import SignupPresentation from './SignupPresentation'
+import { useDispatch } from "react-redux";
+import { createAccount } from "../../Redux/Slices/AuthSlice";
+import { useNavigate } from "react-router-dom";
 
 //Conatainer for the Signup component
 function Signup() {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    
 
     const [signUpState, setSignUpState] = useState({
         firstName: "",
@@ -20,7 +27,7 @@ function Signup() {
         })
     }
 
-    function handleFormSubmit(e){
+    async function handleFormSubmit(e){
         e.preventDefault();
         console.log(signUpState)
 
@@ -47,6 +54,17 @@ function Signup() {
             return;
         }
 
+        const apiResponse = await dispatch(createAccount(signUpState));
+        console.log("ApiResponse is ",apiResponse)
+        console.log("API Response Data:", apiResponse.payload);
+        if (apiResponse.payload.data.success) {
+            toast.success("Signup successful!");
+            console.log("Navigating to login page...");
+            navigate("/auth/login");
+        } else {
+            toast.error("Signup failed. Please try again.");
+        }
+       
     }
 
 

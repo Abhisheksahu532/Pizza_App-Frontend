@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ArrowRight from '../Components/Icons/ArrowRight'
 import IconPatchCheck from '../Components/Icons/IconPatchCheck'
 import PizzaImage from "../assets/Images/pizza1.png"
@@ -7,10 +7,21 @@ import OrderFood from '../assets/Images/orderFood.png';
 import Pickup from '../assets/Images/pickup.png';
 import Enjoy from '../assets/Images/enjoy.png';
 import Layout from '../Layouts/Layout'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllProducts } from '../Redux/Slices/ProductSlice'
 
 
 const Home = () => {
-  return (
+
+    const dispatch = useDispatch();
+
+    const { productsData } = useSelector((state) => state.product);
+
+    useEffect(() => {
+        //This will be called when the component mounts
+        dispatch(getAllProducts());
+    }, []);
+    return (
     <Layout>
     <div>
         {/** Hero Section */}
@@ -177,6 +188,8 @@ const Home = () => {
             </div>
 
         </section>
+
+        {productsData.map((product) => <div key={product._id}>{product.productName}</div>)}
     </div>
     </Layout>
   )

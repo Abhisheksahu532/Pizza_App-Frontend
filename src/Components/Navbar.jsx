@@ -1,6 +1,6 @@
 import { useDispatch, useSelector} from 'react-redux';
 import Pizzalogo from '../assets/Images/pizzalogo.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../Redux/Slices/AuthSlice';
 
 
@@ -9,6 +9,7 @@ function Navbar(){
 
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     async function handleLogout(e){
         e.preventDefault();
         dispatch(logout());
@@ -17,7 +18,9 @@ function Navbar(){
     return(
         <nav className="flex items-center justify-around h-16 text-[#6B7280] font-mono border-none shadow-md">
             
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center"
+                onClick={() => navigate('/')}
+            >
                 <p>Pizza App</p>
                 <img 
                     

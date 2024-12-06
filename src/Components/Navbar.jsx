@@ -1,13 +1,18 @@
 import { useDispatch, useSelector} from 'react-redux';
 import Pizzalogo from '../assets/Images/pizzalogo.png'
+import CartIcon from '../assets/Images/cart.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../Redux/Slices/AuthSlice';
+import { useEffect } from 'react';
+import { getCartDetails } from '../Redux/Slices/CartSlice';
 
 
 
 function Navbar(){
 
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+    const { cartsData } = useSelector((state) => state.cart);
+    // const cartCount = cartsData.length;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     async function handleLogout(e){
@@ -15,6 +20,20 @@ function Navbar(){
         dispatch(logout());
         
     }
+
+    async function fetchCartDetails() {
+        const res = await dispatch(getCartDetails());
+        if(res?.payload?.isUnauthorized) {
+            dispatch(logout());
+        }
+    }
+    useEffect(() => {
+        console.log(typeof(isLoggedIn))
+        if(isLoggedIn) {
+            fetchCartDetails();
+        }
+    }, []);
+    
     return(
         <nav className="flex items-center justify-around h-16 text-[#6B7280] font-mono border-none shadow-md">
             
@@ -60,8 +79,22 @@ function Navbar(){
                         ) }
 
                     </li>
+
+                    {isLoggedIn && (
+                        <Link to={'/cart'}>
+                            <li>
+                                <img src={CartIcon} className='w-7 h-7 inline'/>
+                                {' '}
+                                <p className='text-black inline'>
+                                {cartsData?.items?.length}
+                                </p>
+                            </li>
+                        </Link>
+                    )}
                 </ul>
             </div>
+
+
 
         </nav>
     );

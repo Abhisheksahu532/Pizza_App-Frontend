@@ -9,6 +9,7 @@ import Enjoy from '../assets/Images/enjoy.png';
 import Layout from '../Layouts/Layout'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../Redux/Slices/ProductSlice'
+import { Link } from 'react-router-dom'
 
 
 const Home = () => {
@@ -189,7 +190,50 @@ const Home = () => {
 
         </section>
 
-        {productsData.map((product) => <div key={product._id}>{product.productName}</div>)}
+
+        <div className='mx-auto'>
+            <div className='flex flex-wrap justify-center'>
+
+                {productsData.map((item) => {
+                    return (
+                        item.inStock && (
+                            <div className='p-4 md:w-1/3' key = {item._id}>
+
+                                <Link to={`/product/${item._id}`}>
+                                    <div className='overflow-hidden border rounded-lg border-opacity-60'>
+
+                                        <img
+                                            src={item?.productImage}
+                                            className='object-cover object-center w-full h-55'
+                                        />
+                                        <div className='p-6 border'>
+                                            <h2 className='text-xs font-medium tracking-widest text-gray-400 title-font'>
+                                                {item?.category}
+                                            </h2>
+                                            <h1 className='mb-3 text-lg font-medium text-gray-900'>
+                                                {item?.productName}
+                                            </h1>
+                                            <p className='mb-3 leading-relaxed'>
+                                                {item?.description}
+                                            </p>
+
+                                            <p>
+                                                <span className='text-lg font-medium text-gray-900'>
+                                                    ${item?.price}
+                                                </span>
+                                            </p>
+                                            
+                                        </div>
+                                    </div>
+                                </Link>
+
+                            </div>
+                        )
+                    )
+                })}
+
+            </div>
+        </div>
     </div>
     </Layout>
   )
